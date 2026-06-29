@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cosmic Pizza 🍕</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="card">
+    <h1>Cosmic Pizza <span class="emoji">🍕🚀</span></h1>
+    <p class="tagline">Build your pie. We deliver across the galaxy.</p>
+
+    <form action="/order" method="post">
+      <label for="size">Size</label>
+      <select id="size" name="size">
+        {% for size in sizes %}
+        <option value="{{ size }}">{{ size|capitalize }}</option>
+        {% endfor %}
+      </select>
+
+      <fieldset>
+        <legend>Toppings</legend>
+        {% for topping in toppings %}
+        <label class="topping">
+          <input type="checkbox" name="toppings" value="{{ topping }}" />
+          {{ topping|capitalize }}
+        </label>
+        {% endfor %}
+      </fieldset>
+
+      <button type="submit">Calculate my pizza</button>
+    </form>
+
+    {% if receipt %}
+    <section class="receipt">
+      <h2>Your Cosmic Order</h2>
+      <p><strong>Size:</strong> {{ receipt.size|capitalize }}</p>
+      <p><strong>Toppings:</strong>
+        {{ receipt.toppings | map('capitalize') | join(', ') if receipt.toppings else 'Just the classics' }}
+      </p>
+      <p class="price">{{ receipt.price }}</p>
+      <p class="calories">{{ receipt.calories }} calories</p>
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>
