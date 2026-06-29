@@ -47,3 +47,8 @@ jobs:
           file: coverage.xml
           language: Python
           label: code-coverage/pytest
+          # Until Code Quality is enabled (Module 1) the upload endpoint returns
+          # 404. Treat that as a warning so the template stays green out of the
+          # box; once Code Quality is on, the upload succeeds and coverage shows
+          # up on pull requests.
+          fail-on-error: false
