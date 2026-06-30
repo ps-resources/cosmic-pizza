@@ -3,7 +3,8 @@
 A step-by-step script for demoing **GitHub Code Quality** end to end using the
 **Cosmic Pizza** sample app.
 
-> 🧪 **Preview notice — read me first**
+> [!WARNING]
+> **Preview notice — read me first**
 > GitHub Code Quality is in **public preview** and becomes **generally available
 > on July 20, 2026**. During the preview it is **free**, although CodeQL scans
 > consume **GitHub Actions minutes**. After GA it is a paid product
@@ -12,13 +13,15 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 > before GA, so re-check the docs the morning of your session:
 > <https://docs.github.com/code-security/concepts/about-code-quality>
 
-> 📦 **Where Code Quality runs**
+> [!IMPORTANT]
+> **Where Code Quality runs**
 > Code Quality is available for **organization-owned repositories** on **GitHub
 > Team** and **GitHub Enterprise Cloud**. It is **not** on GitHub Enterprise
 > Server, and not on personal accounts. Make your demo copy inside a qualifying
 > **organization**.
 
-> 🌐 **Supported languages (CodeQL / "Standard findings"):** C#, Go, Java,
+> [!NOTE]
+> **Supported languages (CodeQL / "Standard findings"):** C#, Go, Java,
 > JavaScript, Python, Ruby, TypeScript. This sample app is **Python**.
 > A separate **AI-powered analysis** ("AI findings") looks at recently pushed
 > files on the default branch and can flag issues in other languages too.
@@ -50,7 +53,8 @@ Do this **ahead of time**, not live.
 4. Name it something like `cosmic-pizza-demo`, set visibility to **Private**, and
    click **Create repository**.
 
-> 💡 Create a **fresh copy for each delivery**. Several steps open pull requests
+> [!TIP]
+> Create a **fresh copy for each delivery**. Several steps open pull requests
 > and leave findings behind; a clean repo keeps the demo crisp.
 
 ### 0.2 Allow the workflow to open pull requests
@@ -64,7 +68,8 @@ the built-in `GITHUB_TOKEN` is not allowed to open PRs, so enable it now:
 4. Check **Allow GitHub Actions to create and approve pull requests**.
 5. Click **Save**.
 
-> 🔐 No secrets are required — the workflow uses the built-in `GITHUB_TOKEN`. The
+> [!NOTE]
+> No secrets are required — the workflow uses the built-in `GITHUB_TOKEN`. The
 > only thing you must flip is the setting above. (If your org enforces this at
 > the **org** level under **Settings ▸ Actions ▸ General**, set it there instead.)
 
@@ -100,7 +105,8 @@ Actions to create and approve pull requests" is checked, and Actions is enabled.
      labeled/self-hosted runner.
 5. Click **Save changes**.
 
-> ⏳ Enabling kicks off the first CodeQL scan of the default branch. It runs as a
+> [!TIP]
+> Enabling kicks off the first CodeQL scan of the default branch. It runs as a
 > **"Code Quality"** workflow on the **Actions** tab and takes a few minutes.
 > Start it now so findings are ready for Module 2. (Talk track tip: while it
 > runs, walk through the app and the intentional issues.)
@@ -120,7 +126,8 @@ To show coverage on a PR:
    enabled — you'll see them in Module 3 as a comment from
    **`github-code-quality[bot]`** comparing the PR branch's coverage to `main`.
 
-> 🧪 **_(preview)_** Code coverage in pull requests is in public preview. It works
+> [!NOTE]
+> **_(preview)_** Code coverage in pull requests is in public preview. It works
 > with **any language** that can emit a Cobertura XML report — this app uses
 > `pytest --cov`.
 
@@ -133,7 +140,8 @@ org at once:
 2. In the sidebar, under **Security**, click **Code quality**.
 3. Toggle **Enable Code Quality** on to apply it to all repositories.
 
-> 🧪 **_(preview)_** Organization-level enablement is in public preview. Use it to
+> [!NOTE]
+> **_(preview)_** Organization-level enablement is in public preview. Use it to
 > roll Code Quality out broadly; use the API below when you want a curated subset.
 
 ### 1.4 Show the enablement API for "many, but not all" repos _(preview)_
@@ -175,7 +183,8 @@ gh api --method PATCH \
   -f 'languages[]=javascript-typescript'
 ```
 
-> 🧪 **_(preview)_** The Code Quality REST API uses the dated API version
+> [!NOTE]
+> **_(preview)_** The Code Quality REST API uses the dated API version
 > **`2026-03-10`** and may change before GA. You can confirm a repo's status with
 > `GET /repos/{owner}/{repo}/code-quality/setup`.
 
@@ -207,7 +216,8 @@ By now the first default-branch scan has completed.
    separate dashboard, and it can surface issues beyond the CodeQL-supported
    languages.
 
-> 🧪 **_(preview)_** AI findings are part of the preview and presented separately
+> [!NOTE]
+> **_(preview)_** AI findings are part of the preview and presented separately
 > from the deterministic CodeQL "Standard findings."
 
 ### 2.3 Generate a fix
@@ -217,7 +227,8 @@ By now the first default-branch scan has completed.
 2. Use the **Copilot Autofix** suggestion attached to the finding to generate a
    proposed fix.
 
-> 💡 You **do not** need a Copilot or Code Security license to use Code Quality or
+> [!TIP]
+> You **do not** need a Copilot or Code Security license to use Code Quality or
 > apply Copilot-powered autofixes.
 
 ### 2.4 Open a PR with the fixes
@@ -246,7 +257,9 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 4. Wait ~30–60s. The workflow creates a branch, adds `pizzeria/promo.py`, and
    opens a pull request titled **"Add loyalty promo feature."**
 
-> 🧩 **What it injects (so you know what to point at):**
+> [!NOTE]
+> **What it injects (so you know what to point at):**
+>
 > | Issue | Where | Caught by |
 > | --- | --- | --- |
 > | Unused local variable (`unused_tax`) | `apply_discount()` | CodeQL — maintainability |
@@ -272,7 +285,8 @@ This is the headline demo: a PR that introduces fresh problems and shows both
    (O(n²) loop) and the **mutable default argument** call-outs. Contrast this with
    CodeQL: CCR blends an LLM with deterministic tools for context-aware feedback.
 
-> 🧪 **_(preview)_** Copilot Code Review's newest capabilities (deterministic
+> [!NOTE]
+> **_(preview)_** Copilot Code Review's newest capabilities (deterministic
 > detections, agentic fix hand-off) are in public preview and may change.
 
 ### 3.4 Dismiss a finding
@@ -297,7 +311,8 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 2. Commit the batch as a single set of changes and show the PR updating, the
    checks re-running, and the findings clearing.
 
-> 💡 Optional flex: assign remediation to the **Copilot coding agent** (requires a
+> [!TIP]
+> Optional flex: assign remediation to the **Copilot coding agent** (requires a
 > Copilot license) to have it open a follow-up fix PR for you.
 
 ✅ **Module 3 done when:** you've shown CodeQL + CCR findings on one PR, dismissed
@@ -307,7 +322,8 @@ one, autofixed one, and batched multiple fixes.
 
 ## Module 4 — Organization insights _(preview)_
 
-> 🧪 **_(preview)_** The organization-level Code Quality dashboard is in public
+> [!NOTE]
+> **_(preview)_** The organization-level Code Quality dashboard is in public
 > preview.
 
 ### 4.1 Open the org-level Code Quality overview
@@ -316,6 +332,7 @@ one, autofixed one, and batched multiple fixes.
 2. Click the **Security and quality** tab (shield icon).
 3. In the **Insights** section of the sidebar, click **Code quality**.
 
+> [!NOTE]
 > The dashboard only shows repositories where **you can see** the findings, so
 > permissions are respected automatically (admins see everything; developers see
 > what they have access to).
@@ -334,7 +351,8 @@ Walk through what teams get with **zero extra setup**:
 * **Drill-down** — click a low-scoring bubble to filter the table, then click a
   repo name to jump into its **repository-level** dashboard.
 
-> 🗣️ **Talk track:** this is how an engineering leader answers "where is our
+> [!TIP]
+> **Talk track:** this is how an engineering leader answers "where is our
 > technical debt concentrated, and which repos should we tackle first?" — at a
 > glance, without bespoke tooling.
 

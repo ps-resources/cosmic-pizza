@@ -7,10 +7,12 @@ hood the code carries a few small quality and performance issues on purpose, so
 you can watch **Code Quality (CodeQL)**, **code coverage**, and **Copilot Code
 Review** light them up.
 
-> 📋 **Facilitators:** follow [`DEMO_INSTRUCTIONS.md`](DEMO_INSTRUCTIONS.md) for
+> [!IMPORTANT]
+> **Facilitators:** follow [`DEMO_INSTRUCTIONS.md`](DEMO_INSTRUCTIONS.md) for
 > a full, step-by-step walkthrough (Modules 0–4).
 
-> 🧪 **Preview notice:** GitHub Code Quality is in **public preview** and becomes
+> [!WARNING]
+> **Preview notice:** GitHub Code Quality is in **public preview** and becomes
 > generally available on **July 20, 2026**. Features marked _(preview)_ in the
 > demo instructions may change.
 
