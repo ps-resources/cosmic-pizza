@@ -338,8 +338,7 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 ### 3.3 Review the Copilot Code Review findings
 
 1. If Copilot Code Review isn't already running on PRs, request it: in the PR,
-   open **Reviewers** and request a review from **Copilot** (or rely on your org's
-   automatic CCR rule if configured).
+   open **Reviewers** and request a review from **Copilot**.
 2. Copilot Code Review posts its own comments — point out the **performance**
    (O(n²) loop) and the **mutable default argument** call-outs. Contrast this with
    CodeQL: CCR blends an LLM with deterministic tools for context-aware feedback.
@@ -348,7 +347,12 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 > **_(preview)_** Copilot Code Review's newest capabilities (deterministic
 > detections, agentic fix hand-off) are in public preview and may change.
 
-### 3.4 Dismiss a finding
+### 3.4 Review the code coverage results
+
+1. Note that the code coverage results show both the stats for the
+   target branch and the head branch, with a breakdown per file.
+
+### 3.5 Dismiss a finding
 
 1. Pick one finding you want to wave off (e.g. treat the identical-comparison as
    intentional for the demo).
@@ -357,29 +361,40 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 3. Show that the dismissed finding drops out of the active list — useful for
    triaging noise.
 
-### 3.5 Generate an Autofix for a finding
+### 3.6 Generate Copilot Autofix suggestions
 
 1. On one of the remaining CodeQL findings (e.g. the **unused variable**), open
    the **Copilot Autofix** suggestion.
-2. Show the suggested diff that removes the dead code.
+2. Show the suggested diff that resolves the issue.
 
-### 3.6 Add multiple fixes to a batch
+### 3.7 Add multiple fixes to a batch
 
-1. Where multiple findings each have an autofix, **add them to a batch** instead
+1. Navigate to the **Files changed** tab and click on the Code Quality Bot and/or CCR
+   icons to view their comments in line.
+2. Where multiple findings each have an autofix, **add them to a batch** instead
    of committing one at a time.
-2. Commit the batch as a single set of changes and show the PR updating, the
+3. Commit the batch as a single set of changes and show the PR updating, the
    checks re-running, and the findings clearing.
 
-> [!TIP]
-> Optional flex: assign remediation to the **Copilot coding agent** (requires a
-> Copilot license) to have it open a follow-up fix PR for you.
+### 3.8 Quality gates with rulesets _(preview)_
+
+Mention that **rulesets** can enforce quality gates on pull requests — blocking
+merges that don't meet **maintainability**, **reliability**, or **coverage**
+thresholds — so quality standards are enforced, not just reported.
+
+1. Go to the repo's **Settings** tab.
+2. Under the **Rules** drop down, select **Rulesets**.
+3. Select **New ruleset**, then select **New branch ruleset**.
+4. Review the general ruleset options: Enforcement status, Bypass list, Target branches.
+5. Scroll down to the **Rules** section and check the **Require code quality results** checkbox.
+6. Select the **Severity** dropdown that appears and highlight the options.
 
 ✅ **Module 3 done when:** you've shown CodeQL + CCR findings on one PR, dismissed
-one, autofixed one, and batched multiple fixes.
+one, autofixed one, batched multiple fixes, and reviewed enforcement via rulesets.
 
 ---
 
-## Module 4 — Organization insights _(preview)_
+## Module 4 — Organization insights
 
 > [!NOTE]
 > **_(preview)_** The organization-level Code Quality dashboard is in public
@@ -414,12 +429,6 @@ Walk through what teams get with **zero extra setup**:
 > **Talk track:** this is how an engineering leader answers "where is our
 > technical debt concentrated, and which repos should we tackle first?" — at a
 > glance, without bespoke tooling.
-
-### 4.3 (Optional) Quality gates with rulesets _(preview)_
-
-Mention that **rulesets** can enforce quality gates on pull requests — blocking
-merges that don't meet **maintainability**, **reliability**, or **coverage**
-thresholds — so quality standards are enforced, not just reported.
 
 ✅ **Module 4 done when:** you've shown the org bubble chart + repo table and
 explained how leaders prioritize remediation.
