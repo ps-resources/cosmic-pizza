@@ -247,11 +247,6 @@ gh api --method PATCH \
   -f 'languages[]=javascript-typescript'
 ```
 
-> [!NOTE]
-> **_(preview)_** The Code Quality REST API uses the dated API version
-> **`2026-03-10`** and may change before GA. You can confirm a repo's status with
-> `GET /repos/{owner}/{repo}/code-quality/setup`.
-
 ✅ **Module 1 done when:** the repo shows Code Quality enabled and the first scan
 has finished on the **Actions** tab.
 
