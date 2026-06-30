@@ -101,12 +101,6 @@ Actions to create and approve pull requests" is checked, and Actions is enabled.
 1. In the repo, go to **Settings**.
 2. In the left sidebar, under **Security**, click **Code quality**.
 3. Click **Enable code quality**.
-4. Review the configuration:
-   * **Languages** — leave **Python** checked (uncheck any you don't want
-     analyzed).
-   * **Runner type** — leave **Standard** (GitHub-hosted) unless you need a
-     labeled/self-hosted runner.
-5. Click **Save changes**.
 
 > [!TIP]
 > Enabling kicks off the first CodeQL scan of the default branch. It runs as a
