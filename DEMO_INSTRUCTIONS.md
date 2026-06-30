@@ -286,10 +286,6 @@ By now the first default-branch scan has completed.
 2. Use the **Copilot Autofix** suggestion attached to the finding to generate a
    proposed fix.
 
-> [!TIP]
-> You **do not** need a Copilot or Code Security license to use Code Quality or
-> apply Copilot-powered autofixes.
-
 ### 2.4 Open a PR with the fixes
 
 1. Accept the generated fix(es) and let GitHub **create a pull request** with the
