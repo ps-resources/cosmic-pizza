@@ -288,11 +288,8 @@ By now the first default-branch scan has completed.
 
 ### 2.4 Open a PR with the fixes
 
-1. Accept the generated fix(es) and let GitHub **create a pull request** with the
-   changes (or commit them to a new branch).
-2. Note that opening this PR triggers a fresh Code Quality scan **on the PR** —
-   leading nicely into Module 3.
-3. You can merge this "cleanup" PR to show the finding being resolved.
+1. Wait a moment for Copilot Autofix to create a PR with the requested fix(es).
+2. Show the PR's changed files, and mention that we will take a closer look at the pull request workflow in the next demo.
 
 ✅ **Module 2 done when:** you've shown Standard + AI findings, generated an
 autofix, and opened a fix PR.
