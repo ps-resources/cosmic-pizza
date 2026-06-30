@@ -4,9 +4,11 @@
 #
 # Code Quality exposes a REST API to enable it per repository:
 #   PATCH /repos/{owner}/{repo}/code-quality/setup
-# This script loops over a CSV of repositories and calls that endpoint for each,
-# which is handy when you want to roll Code Quality out to a specific *subset* of
-# repos (rather than the whole org via the org-level toggle).
+# This script loops over a CSV of repositories and, for each one, asks GitHub
+# which languages the repo uses, keeps the ones Code Quality supports, and calls
+# that endpoint with exactly those languages. Handy when you want to roll Code
+# Quality out to a specific *subset* of repos (rather than the whole org via the
+# org-level toggle).
 #
 # NOTE: The Code Quality REST API is in PUBLIC PREVIEW and uses the dated API
 # version 2026-03-10. Both may change before general availability (2026-07-20).
@@ -30,9 +32,23 @@ set -euo pipefail
 CSV_FILE="${1:-scripts/repos.csv}"
 API_VERSION="2026-03-10"
 
-# Languages to analyze. Valid values (CodeQL-supported for Code Quality):
+# Map a language name as reported by the GitHub "languages" API to the matching
+# CodeQL identifier that Code Quality understands. Languages that Code Quality
+# does NOT support return nothing and are skipped.
+#
+# Code Quality-supported CodeQL languages:
 #   csharp, go, java-kotlin, javascript-typescript, python, ruby
-LANGUAGES='["python","javascript-typescript"]'
+map_language() {
+  case "$1" in
+    "C#")                     echo "csharp" ;;
+    "Go")                     echo "go" ;;
+    "Java" | "Kotlin")        echo "java-kotlin" ;;
+    "JavaScript" | "TypeScript") echo "javascript-typescript" ;;
+    "Python")                 echo "python" ;;
+    "Ruby")                   echo "ruby" ;;
+    *)                        : ;; # unsupported -> ignored
+  esac
+}
 
 if [[ ! -f "$CSV_FILE" ]]; then
   echo "❌ CSV file not found: $CSV_FILE" >&2
@@ -47,14 +63,39 @@ tail -n +2 "$CSV_FILE" | tr -d '\r' | while IFS= read -r repo; do
   [[ -z "$repo" ]] && continue
 
   echo "→ $repo"
+
+  # 1) Ask GitHub which languages the repo actually uses, then keep only the
+  #    ones Code Quality supports (mapped to their CodeQL identifiers, deduped).
+  detected="$(
+    gh api \
+      -H "Accept: application/vnd.github+json" \
+      "/repos/${repo}/languages" --jq 'keys[]' 2>/dev/null \
+    | while IFS= read -r lang; do map_language "$lang"; done \
+    | sed '/^$/d' | sort -u
+  )"
+
+  if [[ -z "$detected" ]]; then
+    echo "   ⚠️  Skipped (no Code Quality-supported languages detected, or the"
+    echo "       repo could not be read — check the name and your access)"
+    continue
+  fi
+
+  # 2) Turn the detected languages into repeated -f languages[]=... arguments.
+  lang_args=()
+  while IFS= read -r cq_lang; do
+    lang_args+=(-f "languages[]=${cq_lang}")
+  done <<< "$detected"
+
+  echo "   Languages: $(echo "$detected" | tr '\n' ' ')"
+
+  # 3) Enable Code Quality for exactly those languages.
   if gh api \
       --method PATCH \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: ${API_VERSION}" \
       "/repos/${repo}/code-quality/setup" \
       -f "state=configured" \
-      -f "languages[]=python" \
-      -f "languages[]=javascript-typescript" \
+      "${lang_args[@]}" \
       >/dev/null 2>&1; then
     echo "   ✅ Code Quality enablement requested"
   else

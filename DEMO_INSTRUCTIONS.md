@@ -214,7 +214,8 @@ PATCH /repos/{owner}/{repo}/code-quality/setup
 
 This repo ships a ready-to-run example at
 [`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh) that reads a
-[`scripts/repos.csv`](scripts/repos.csv) file and enables each one with the
+[`scripts/repos.csv`](scripts/repos.csv) file and, for each repo, **detects the
+languages it uses** and enables Code Quality for the supported ones with the
 `gh` CLI:
 
 ```bash
@@ -231,9 +232,17 @@ gh auth login            # token needs the `repo` scope
 ./scripts/enable-code-quality.sh scripts/repos.csv
 ```
 
-Under the hood each row becomes:
+Under the hood, for each row the script first asks GitHub which languages the
+repo uses, keeps the ones Code Quality supports (`csharp`, `go`, `java-kotlin`,
+`javascript-typescript`, `python`, `ruby`), and then enables exactly those:
 
 ```bash
+# Detect the repo's languages:
+gh api /repos/OWNER/REPO/languages --jq 'keys[]'
+# -> Python
+#    JavaScript
+
+# Enable Code Quality for the supported, detected languages:
 gh api --method PATCH \
   -H "X-GitHub-Api-Version: 2026-03-10" \
   /repos/OWNER/REPO/code-quality/setup \
