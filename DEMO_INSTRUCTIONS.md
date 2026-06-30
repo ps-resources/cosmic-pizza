@@ -4,7 +4,8 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 **Cosmic Pizza** sample app.
 
 > [!WARNING]
-> **Preview notice — read me first**
+> **Preview notice**
+> 
 > GitHub Code Quality is in **public preview** and becomes **generally available
 > on July 20, 2026**. During the preview it is **free**, although CodeQL scans
 > consume **GitHub Actions minutes**. After GA it is a paid product
@@ -15,14 +16,16 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 
 > [!IMPORTANT]
 > **Where Code Quality runs**
+> 
 > Code Quality is available for **organization-owned repositories** on **GitHub
 > Team** and **GitHub Enterprise Cloud**. It is **not** on GitHub Enterprise
 > Server, and not on personal accounts. Make your demo copy inside a qualifying
 > **organization**.
 
 > [!NOTE]
-> **Supported languages (CodeQL / "Standard findings"):** C#, Go, Java,
-> JavaScript, Python, Ruby, TypeScript. This sample app is **Python**.
+> **Supported languages (CodeQL / "Standard findings"):**
+>
+> C#, Go, Java, JavaScript, Python, Ruby, TypeScript. This sample app is **Python**.
 > A separate **AI-powered analysis** ("AI findings") looks at recently pushed
 > files on the default branch and can flag issues in other languages too.
 
