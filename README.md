@@ -24,7 +24,6 @@ Review** light them up.
 | `pizzeria/` | Menu data, pricing, and order logic |
 | `templates/`, `static/` | The web UI |
 | `tests/` | Pytest suite (intentionally ~95% coverage) |
-| `.github/workflows/code-coverage.yml` | Runs tests and uploads Cobertura coverage |
 | `.github/workflows/introduce-quality-issues.yml` | On-demand workflow that opens a PR with bad code |
 | `scripts/enable-code-quality.sh` + `repos.csv` | Enable Code Quality across many repos via API |
 | `demo/promo.py.txt` | The "bad code" template the workflow injects |

@@ -43,7 +43,8 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 
 ---
 
-## Module 0 — Before the training
+<details>
+<summary><h2>Module 0 — Before the training</h2></summary>
 
 Do this **ahead of time**, not live.
 
@@ -92,9 +93,12 @@ is usually why. See:
 ✅ **You're ready when:** the repo exists in a qualifying org, "Allow GitHub
 Actions to create and approve pull requests" is checked, and Actions is enabled.
 
+</details>
+
 ---
 
-## Module 1 — Enablement & configuration
+<details>
+<summary><h2>Module 1 — Enablement &amp; configuration</h2></summary>
 
 ### 1.1 Enable Code Quality on the repository
 
@@ -108,20 +112,78 @@ Actions to create and approve pull requests" is checked, and Actions is enabled.
 > Start it now so findings are ready for Module 2. (Talk track tip: while it
 > runs, walk through the app and the intentional issues.)
 
-### 1.2 Configure code coverage _(preview)_
+### 1.2 Set up code coverage _(preview)_
 
-This template already includes a coverage workflow
-(`.github/workflows/code-coverage.yml`). It runs the tests, produces a
-**Cobertura XML** report, and uploads it with the
-**`actions/upload-code-coverage@v1`** action (which needs the
-**`code-quality: write`** permission — already set in the workflow).
+Code Quality can show **code coverage** on pull requests. To enable it, add a
+workflow that runs the tests, produces a **Cobertura XML** report, and uploads it
+with the **`actions/upload-code-coverage@v1`** action (which needs the
+**`code-quality: write`** permission).
 
-To show coverage on a PR:
+This is the **setup** step — you create the workflow now. The coverage results
+themselves show up on a pull request in **Module 3**.
 
-1. Point out the workflow file and the `Upload coverage report` step.
-2. Coverage results appear automatically on pull requests once Code Quality is
-   enabled — you'll see them in Module 3 as a comment from
-   **`github-code-quality[bot]`** comparing the PR branch's coverage to `main`.
+Create `.github/workflows/code-coverage.yml` in your demo repo with the
+following contents (commit it to `main`):
+
+```yaml
+name: Code Coverage
+
+# Runs the test suite, produces a Cobertura XML coverage report, and uploads it
+# to GitHub Code Quality. Once Code Quality is enabled for the repo, a coverage
+# summary from github-code-quality[bot] appears on every pull request.
+#
+# Code coverage in pull requests is in PUBLIC PREVIEW (subject to change).
+# Uploading requires the `code-quality: write` permission below.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  code-quality: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the PR head commit (not the merge commit) so coverage line
+      # numbers map correctly to the diff.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Run tests with coverage
+        run: pytest --cov=pizzeria --cov-report=xml
+
+      - name: Upload coverage report
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/upload-code-coverage@v1
+        with:
+          file: coverage.xml
+          language: Python
+          label: code-coverage/pytest
+          # Until Code Quality is enabled the upload endpoint returns 404. Treat
+          # that as a warning so the workflow stays green out of the box; once
+          # Code Quality is on, the upload succeeds and coverage shows up on
+          # pull requests.
+          fail-on-error: false
+```
+
+Then in **Module 3** you'll see the coverage results land on the PR as a comment
+from **`github-code-quality[bot]`** comparing the PR branch's coverage to `main`.
 
 > [!NOTE]
 > **_(preview)_** Code coverage in pull requests is in public preview. It works
@@ -144,7 +206,7 @@ org at once:
 ### 1.4 Show the enablement API for "many, but not all" repos _(preview)_
 
 When you want Code Quality on a **specific list** of repos (not the whole org),
-script it with the **Code Quality setup API**:
+script it with the **[Code Quality setup API](https://docs.github.com/rest/code-quality/code-quality)**:
 
 ```
 PATCH /repos/{owner}/{repo}/code-quality/setup
@@ -188,9 +250,12 @@ gh api --method PATCH \
 ✅ **Module 1 done when:** the repo shows Code Quality enabled and the first scan
 has finished on the **Actions** tab.
 
+</details>
+
 ---
 
-## Module 2 — Review findings
+<details>
+<summary><h2>Module 2 — Review findings</h2></summary>
 
 By now the first default-branch scan has completed.
 
@@ -239,9 +304,12 @@ By now the first default-branch scan has completed.
 ✅ **Module 2 done when:** you've shown Standard + AI findings, generated an
 autofix, and opened a fix PR.
 
+</details>
+
 ---
 
-## Module 3 — Pull request workflow
+<details>
+<summary><h2>Module 3 — Pull request workflow</h2></summary>
 
 This is the headline demo: a PR that introduces fresh problems and shows both
 **CodeQL** and **Copilot Code Review (CCR)** reacting in the PR.
@@ -260,7 +328,11 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 > | Issue | Where | Caught by |
 > | --- | --- | --- |
 > | Unused local variable (`unused_tax`) | `apply_discount()` | CodeQL — maintainability |
+> | Unused import (`os`) | module top | CodeQL — maintainability |
+> | Unreachable code after `return` | `apply_discount()` | CodeQL — maintainability |
 > | Comparison of identical values (`subtotal == subtotal`) | `apply_discount()` | CodeQL — reliability |
+> | `is` comparison with a literal (`tier is "gold"`) | `loyalty_tier()` | CodeQL — reliability |
+> | Duplicate key in dict literal (`"silver"`) | `REWARD_TIERS` | CodeQL — reliability |
 > | Mutable default argument (`history=[]`) | `apply_discount()` | Copilot Code Review |
 > | O(n²) loop | `frequency_bonus()` | Copilot Code Review |
 
@@ -268,8 +340,10 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 
 1. Open the new pull request (from the **Pull requests** tab).
 2. Wait for the **Code Quality** check to run. The **`github-code-quality[bot]`**
-   posts **inline comments** on `promo.py` for the CodeQL findings (unused
-   variable, identical comparison).
+   posts **inline comments** on `promo.py` for the CodeQL findings — three
+   maintainability (unused variable, unused import, unreachable code) and three
+   reliability (identical comparison, `is` comparison with a literal, duplicate
+   dict key).
 3. Open the **Files changed** tab to read each inline finding and its
    explanation.
 
@@ -315,9 +389,12 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 ✅ **Module 3 done when:** you've shown CodeQL + CCR findings on one PR, dismissed
 one, autofixed one, and batched multiple fixes.
 
+</details>
+
 ---
 
-## Module 4 — Organization insights _(preview)_
+<details>
+<summary><h2>Module 4 — Organization insights <em>(preview)</em></h2></summary>
 
 > [!NOTE]
 > **_(preview)_** The organization-level Code Quality dashboard is in public
@@ -361,6 +438,8 @@ thresholds — so quality standards are enforced, not just reported.
 
 ✅ **Module 4 done when:** you've shown the org bubble chart + repo table and
 explained how leaders prioritize remediation.
+
+</details>
 
 ---
 

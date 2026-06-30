@@ -9,12 +9,16 @@ name: Introduce code quality issues
 # a .txt extension so the baseline Code Quality scan of the default branch does
 # NOT flag it -- the findings only appear once it lands on a PR as a real .py
 # file. The file contains, on purpose:
-#   * 2 issues CodeQL Code Quality flags as "Standard findings":
-#       - an unused local variable (unused_tax)     -> maintainability
-#       - a comparison of identical values (x == x) -> reliability
+#   * 6 issues CodeQL Code Quality flags as "Standard findings":
+#       - an unused local variable (unused_tax)        -> maintainability
+#       - an unused import (os)                        -> maintainability
+#       - unreachable code after a return              -> maintainability
+#       - a comparison of identical values (x == x)    -> reliability
+#       - an 'is' comparison with a string literal     -> reliability
+#       - a duplicate key in a dict literal            -> reliability
 #   * 2 issues Copilot Code Review typically flags:
-#       - a mutable default argument (history=[])   -> latent bug
-#       - an O(n^2) loop in frequency_bonus()       -> performance
+#       - a mutable default argument (history=[])      -> latent bug
+#       - an O(n^2) loop in frequency_bonus()          -> performance
 #
 # Requires the repository (or org) setting:
 #   Settings > Actions > General > "Allow GitHub Actions to create and approve
@@ -37,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configure git identity
         run: |
