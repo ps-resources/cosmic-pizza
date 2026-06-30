@@ -43,8 +43,7 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 
 ---
 
-<details>
-<summary><h2>Module 0 — Before the training</h2></summary>
+## Module 0 — Before the training
 
 Do this **ahead of time**, not live.
 
@@ -93,12 +92,9 @@ is usually why. See:
 ✅ **You're ready when:** the repo exists in a qualifying org, "Allow GitHub
 Actions to create and approve pull requests" is checked, and Actions is enabled.
 
-</details>
-
 ---
 
-<details>
-<summary><h2>Module 1 — Enablement &amp; configuration</h2></summary>
+## Module 1 — Enablement & configuration
 
 ### 1.1 Enable Code Quality on the repository
 
@@ -259,12 +255,9 @@ gh api --method PATCH \
 ✅ **Module 1 done when:** the repo shows Code Quality enabled and the first scan
 has finished on the **Actions** tab.
 
-</details>
-
 ---
 
-<details>
-<summary><h2>Module 2 — Review findings</h2></summary>
+## Module 2 — Review findings
 
 By now the first default-branch scan has completed.
 
@@ -313,12 +306,9 @@ By now the first default-branch scan has completed.
 ✅ **Module 2 done when:** you've shown Standard + AI findings, generated an
 autofix, and opened a fix PR.
 
-</details>
-
 ---
 
-<details>
-<summary><h2>Module 3 — Pull request workflow</h2></summary>
+## Module 3 — Pull request workflow
 
 This is the headline demo: a PR that introduces fresh problems and shows both
 **CodeQL** and **Copilot Code Review (CCR)** reacting in the PR.
@@ -398,12 +388,9 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 ✅ **Module 3 done when:** you've shown CodeQL + CCR findings on one PR, dismissed
 one, autofixed one, and batched multiple fixes.
 
-</details>
-
 ---
 
-<details>
-<summary><h2>Module 4 — Organization insights <em>(preview)</em></h2></summary>
+## Module 4 — Organization insights _(preview)_
 
 > [!NOTE]
 > **_(preview)_** The organization-level Code Quality dashboard is in public
@@ -447,8 +434,6 @@ thresholds — so quality standards are enforced, not just reported.
 
 ✅ **Module 4 done when:** you've shown the org bubble chart + repo table and
 explained how leaders prioritize remediation.
-
-</details>
 
 ---
 
