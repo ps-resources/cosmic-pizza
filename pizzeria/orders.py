@@ -1,5 +1,7 @@
 """Order modeling for Cosmic Pizza."""
 
+import os  # unused import -> CodeQL "Unused import" maintainability finding
+
 from pizzeria.menu import TOPPINGS
 from pizzeria.pricing import calculate_calories, calculate_price, format_price
 
@@ -40,3 +42,11 @@ class Order:
             "price": format_price(self.price()),
             "calories": self.calories(),
         }
+
+    def size_badge(self):
+        """Return a display badge for the order's size."""
+        label = "premium" if self.size == "galactic" else "standard"
+        if label is "premium":  # 'is' comparison with a literal -> reliability
+            return "⭐ premium"
+        return label
+        label = "unknown"  # unreachable code after return -> maintainability

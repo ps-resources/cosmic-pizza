@@ -261,8 +261,15 @@ By now the first default-branch scan has completed.
 1. Open the **Security and quality** tab (the shield icon) in the repo.
 2. In the sidebar, open **Standard findings** (this is the CodeQL rule-based
    analysis).
-3. Walk through what the baseline app surfaces — for example an **unused import**
-   and an **unused local variable** in `pizzeria/pricing.py`. For each finding:
+3. Walk through what the baseline app surfaces across a few files. For example:
+   * **Maintainability** — an **unused import** and an **unused local variable**
+     in `pizzeria/pricing.py`, another **unused import** and a block of
+     **unreachable code** (after a `return`) in `pizzeria/orders.py`.
+   * **Reliability** — a **duplicate key in a dict literal** in
+     `pizzeria/menu.py` and an **`is` comparison with a string literal** in
+     `pizzeria/orders.py`.
+
+   For each finding:
    * Show the **rule**, the **category** (maintainability vs reliability), and the
      **severity**.
    * Open the finding to see the highlighted code and the explanation.
@@ -315,11 +322,7 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 > | Issue | Where | Caught by |
 > | --- | --- | --- |
 > | Unused local variable (`unused_tax`) | `apply_discount()` | CodeQL — maintainability |
-> | Unused import (`os`) | module top | CodeQL — maintainability |
-> | Unreachable code after `return` | `apply_discount()` | CodeQL — maintainability |
 > | Comparison of identical values (`subtotal == subtotal`) | `apply_discount()` | CodeQL — reliability |
-> | `is` comparison with a literal (`tier is "gold"`) | `loyalty_tier()` | CodeQL — reliability |
-> | Duplicate key in dict literal (`"silver"`) | `REWARD_TIERS` | CodeQL — reliability |
 > | Mutable default argument (`history=[]`) | `apply_discount()` | Copilot Code Review |
 > | O(n²) loop | `frequency_bonus()` | Copilot Code Review |
 
@@ -327,10 +330,8 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 
 1. Open the new pull request (from the **Pull requests** tab).
 2. Wait for the **Code Quality** check to run. The **`github-code-quality[bot]`**
-   posts **inline comments** on `promo.py` for the CodeQL findings — three
-   maintainability (unused variable, unused import, unreachable code) and three
-   reliability (identical comparison, `is` comparison with a literal, duplicate
-   dict key).
+   posts **inline comments** on `promo.py` for the CodeQL findings (unused
+   variable, identical comparison).
 3. Open the **Files changed** tab to read each inline finding and its
    explanation.
 

@@ -26,6 +26,18 @@ TOPPINGS = {
     "stardust": {"price": 300, "calories": 0, "category": "cosmic"},
 }
 
+# Display labels for the storefront category filter. "veggie" is listed twice ->
+# CodeQL "Duplicate key in dict literal" reliability finding; the later value
+# silently wins, so the first "Garden" label is dead.
+CATEGORY_LABELS = {
+    "meat": "Meaty",
+    "veggie": "Garden",
+    "dairy": "Dairy",
+    "fruit": "Fruity",
+    "veggie": "Veggie",
+    "cosmic": "Cosmic",
+}
+
 
 def size_names():
     """Return the list of available size names."""

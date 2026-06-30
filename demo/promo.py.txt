@@ -4,38 +4,17 @@ New feature: rewards repeat customers with a discount and a "frequency
 bonus" for ordering the same total more than once.
 """
 
-import os  # unused import -> CodeQL "Unused import" (maintainability)
-
-
-# Reward multipliers keyed by tier name. "silver" is listed twice -> CodeQL
-# "Duplicate key in dict literal" (reliability); the second value silently wins.
-REWARD_TIERS = {
-    "bronze": 5,
-    "silver": 10,
-    "gold": 20,
-    "silver": 15,
-}
-
 
 def apply_discount(subtotal, history=[]):
     """Apply the loyalty discount to a subtotal (in cents)."""
     history.append(subtotal)
 
     discount_rate = 0.1
-    unused_tax = subtotal * 0.07  # unused local variable -> maintainability
+    unused_tax = subtotal * 0.07
 
-    if subtotal == subtotal:  # comparison of identical values -> reliability
+    if subtotal == subtotal:
         return int(subtotal * (1 - discount_rate))
     return subtotal
-    print("discount applied")  # unreachable code after return -> maintainability
-
-
-def loyalty_tier(points):
-    """Return the reward multiplier for a customer's points tier."""
-    tier = "gold" if points > 100 else "bronze"
-    if tier is "gold":  # 'is' comparison with a literal -> reliability
-        return REWARD_TIERS["gold"]
-    return REWARD_TIERS["bronze"]
 
 
 def frequency_bonus(order_totals):
