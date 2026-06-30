@@ -23,7 +23,7 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 > **organization**.
 
 > [!NOTE]
-> **Supported languages (CodeQL / "Standard findings"):**
+> **Supported languages (CodeQL / "Standard findings")**
 >
 > C#, Go, Java, JavaScript, Python, Ruby, TypeScript. This sample app is **Python**.
 > A separate **AI-powered analysis** ("AI findings") looks at recently pushed
