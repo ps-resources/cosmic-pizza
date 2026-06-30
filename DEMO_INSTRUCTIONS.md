@@ -328,7 +328,7 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 
 ### 3.2 Review the CodeQL findings on the PR
 
-1. Open the new pull request (from the **Pull requests** tab).
+1. Open the new pull request (from the **Pull requests** tab). You may need to allow pending workflows to run toward the bottom of the PR.
 2. Wait for the **Code Quality** check to run. The **`github-code-quality[bot]`**
    posts **inline comments** on `promo.py` for the CodeQL findings (unused
    variable, identical comparison).
