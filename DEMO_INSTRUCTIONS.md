@@ -452,12 +452,6 @@ explained how leaders prioritize remediation.
 
 ---
 
-## Reset / re-run checklist
-
-- Delete branches/PRs created by the **Introduce code quality issues** workflow
-  (named `demo/loyalty-promo-*`) and the fix PR from Module 2.
-- Or simplest: spin up a **fresh template copy** per delivery (Module 0).
-
 ## Handy links
 
 - About Code Quality: <https://docs.github.com/code-security/concepts/about-code-quality>
