@@ -83,8 +83,7 @@ the built-in `GITHUB_TOKEN` is not allowed to open PRs, so enable it now:
 > are locked/greyed at the repo level, you can't change them here — an **org owner
 > or enterprise owner** has to allow them one level up (**org/enterprise Settings
 > ▸ Actions ▸ General**), or you'll need to run the demo in an **org where these
-> are already allowed**. Sort this out before the session — waiting on an
-> enterprise-owner change mid-demo is exactly the "safe space" problem to avoid.
+> are already allowed**.
 
 ### 0.3 Confirm Actions is enabled
 
