@@ -238,9 +238,16 @@ gh auth login            # token needs the `repo` scope
 
 # 3) Enable Code Quality across the list:
 ./scripts/enable-code-quality.sh scripts/repos.csv
+
+# ...or, if some repos have Actions turned off, also enable Actions in the same
+#    pass (best effort — org/enterprise policy may still block it):
+./scripts/enable-code-quality.sh --enable-actions scripts/repos.csv
 ```
 
-Under the hood, for each row the script first asks GitHub which languages the
+For each repo the script first **checks whether Actions is enabled** (Code
+Quality scans run on Actions) and warns if it is off. With `--enable-actions` it
+also tries to turn Actions on, reporting a clear error if org/enterprise policy
+prevents it. Then it asks GitHub which languages the
 repo uses, keeps the ones Code Quality supports (`csharp`, `go`, `java-kotlin`,
 `javascript-typescript`, `python`, `ruby`), and then enables exactly those:
 
