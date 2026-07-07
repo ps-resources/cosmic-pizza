@@ -185,14 +185,15 @@ tail -n +2 "$CSV_FILE" | tr -d '\r' | while IFS= read -r repo; do
   #    Capture stderr so that if the request fails we can show the real API
   #    error (e.g. an org/enterprise policy wall) instead of a generic message.
   if api_error="$(
-      gh api \
+      { gh api \
         --method PATCH \
         -H "Accept: application/vnd.github+json" \
         -H "X-GitHub-Api-Version: ${API_VERSION}" \
         "/repos/${repo}/code-quality/setup" \
         -f "state=configured" \
         "${lang_args[@]}" \
-        2>&1 >/dev/null)"; then
+        >/dev/null; } 2>&1
+    )"; then
     echo "   ✅ Code Quality enablement requested"
   else
     echo "   ⚠️  Failed (check that the repo exists, Actions is enabled, and"
