@@ -100,6 +100,20 @@ Code Quality**. If you can't see the **Code quality** setting in Module 1, this
 is usually why. See:
 <https://docs.github.com/code-security/how-tos/secure-at-scale/configure-enterprise-security/configure-specific-tools/allow-github-code-quality-in-enterprise>
 
+### 0.5 Seed a few other repos so Module 4 lands
+
+Module 4 shows the **organization-level** dashboard, which aggregates **every
+Code Quality-enabled repo in the org**. A fresh org that only contains
+`cosmic-pizza-demo` shows a **single bubble** and an almost-empty chart. Ahead of
+the session, enable Code Quality on a handful of other repos so the bubble chart
+and table actually tell a story — the enablement script
+([`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh), Module 1.4)
+is perfect for this.
+
+> [!IMPORTANT]
+> Enablement is **asynchronous**: the dashboard only fills in after each repo's
+> first scan completes. Do this **well ahead of time**, not the morning of.
+
 ✅ **You're ready when:** the repo exists in a qualifying org, "Allow GitHub
 Actions to create and approve pull requests" is checked, and Actions is enabled.
 
@@ -428,16 +442,6 @@ one, autofixed one, batched multiple fixes, and reviewed enforcement via ruleset
 > [!NOTE]
 > **_(preview)_** The organization-level Code Quality dashboard is in public
 > preview.
-
-> [!IMPORTANT]
-> **Seed a few repos first, or this module falls flat.** The dashboard aggregates
-> **every Code Quality-enabled repo in the org**. A fresh org that only contains
-> `cosmic-pizza-demo` shows a **single bubble** and an almost-empty chart. Ahead
-> of the session, enable Code Quality on a handful of other repos so the bubble
-> chart and table actually tell a story — the enablement script
-> ([`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh), Module 1.4)
-> is perfect for this. Enablement is **asynchronous**, so do this **well ahead of
-> time**: the dashboard only fills in after each repo's first scan completes.
 
 ### 4.1 Open the org-level Code Quality overview
 
