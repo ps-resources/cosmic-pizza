@@ -133,12 +133,12 @@ tail -n +2 "$CSV_FILE" | tr -d '\r' | while IFS= read -r repo; do
         if [[ "$ENABLE_ACTIONS" == true ]]; then
           echo "   … Actions is disabled; enabling it (--enable-actions)"
           if actions_error="$(
-            gh api --method PUT \
+            { gh api --method PUT \
               -H "Accept: application/vnd.github+json" \
               "/repos/${repo}/actions/permissions" \
               -F "enabled=true" \
               -f "allowed_actions=all" \
-              2>&1 >/dev/null
+              >/dev/null; } 2>&1
           )"; then
             echo "   ✅ Actions enabled"
           else
