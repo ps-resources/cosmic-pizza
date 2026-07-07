@@ -76,11 +76,22 @@ the built-in `GITHUB_TOKEN` is not allowed to open PRs, so enable it now:
 > only thing you must flip is the setting above. (If your org enforces this at
 > the **org** level under **Settings ▸ Actions ▸ General**, set it there instead.)
 
+> [!IMPORTANT]
+> **If these toggles are greyed out, the policy is set one level up.** Both
+> **Actions permissions** and **"Allow GitHub Actions to create and approve pull
+> requests"** can be controlled at the **org** *or* **enterprise** level. If they
+> are locked/greyed at the repo level, you can't change them here — an **org owner
+> or enterprise owner** has to allow them one level up (**org/enterprise Settings
+> ▸ Actions ▸ General**), or you'll need to run the demo in an **org where these
+> are already allowed**.
+
 ### 0.3 Confirm Actions is enabled
 
 Code Quality runs CodeQL **on GitHub Actions**, so Actions must be on for the
 repo. **Settings ▸ Actions ▸ General ▸ Actions permissions ▸ Allow all actions**
-(or your org's policy equivalent).
+(or your org's policy equivalent). As with the pull-request permission above, if
+this is greyed out it's being enforced at the **org or enterprise** level and
+must be changed there first.
 
 ### 0.4 (If you belong to an enterprise) Confirm Code Quality is allowed
 
@@ -88,6 +99,20 @@ If your org is part of an enterprise, an enterprise owner must have **allowed
 Code Quality**. If you can't see the **Code quality** setting in Module 1, this
 is usually why. See:
 <https://docs.github.com/code-security/how-tos/secure-at-scale/configure-enterprise-security/configure-specific-tools/allow-github-code-quality-in-enterprise>
+
+### 0.5 Seed a few other repos so Module 4 lands
+
+Module 4 shows the **organization-level** dashboard, which aggregates **every
+Code Quality-enabled repo in the org**. A fresh org that only contains
+`cosmic-pizza-demo` shows a **single bubble** and an almost-empty chart. Ahead of
+the session, enable Code Quality on a handful of other repos so the bubble chart
+and table actually tell a story — the enablement script
+([`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh), Module 1.4)
+is perfect for this.
+
+> [!IMPORTANT]
+> Enablement is **asynchronous**: the dashboard only fills in after each repo's
+> first scan completes. Do this **well ahead of time**, not the morning of.
 
 ✅ **You're ready when:** the repo exists in a qualifying org, "Allow GitHub
 Actions to create and approve pull requests" is checked, and Actions is enabled.
@@ -226,9 +251,16 @@ gh auth login            # token needs the `repo` scope
 
 # 3) Enable Code Quality across the list:
 ./scripts/enable-code-quality.sh scripts/repos.csv
+
+# ...or, if some repos have Actions turned off, also enable Actions in the same
+#    pass (best effort — org/enterprise policy may still block it):
+./scripts/enable-code-quality.sh --enable-actions scripts/repos.csv
 ```
 
-Under the hood, for each row the script first asks GitHub which languages the
+For each repo the script first **checks whether Actions is enabled** (Code
+Quality scans run on Actions) and warns if it is off. With `--enable-actions` it
+also tries to turn Actions on, reporting a clear error if org/enterprise policy
+prevents it. Then it asks GitHub which languages the
 repo uses, keeps the ones Code Quality supports (`csharp`, `go`, `java-kotlin`,
 `javascript-typescript`, `python`, `ruby`), and then enables exactly those:
 
@@ -323,12 +355,21 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 > | --- | --- | --- |
 > | Unused local variable (`unused_tax`) | `apply_discount()` | CodeQL — maintainability |
 > | Comparison of identical values (`subtotal == subtotal`) | `apply_discount()` | CodeQL — reliability |
-> | Mutable default argument (`history=[]`) | `apply_discount()` | Copilot Code Review |
+> | Mutable default argument (`history=[]`) | `apply_discount()` | Copilot Code Review (and often CodeQL too) |
 > | O(n²) loop | `frequency_bonus()` | Copilot Code Review |
+
+> [!NOTE]
+> The **mutable default argument** can surface from **both** tools — Copilot Code
+> Review flags it, and the **github-code-quality (CodeQL)** bot often reports it
+> as well. Don't be surprised to see the same issue called out twice.
 
 ### 3.2 Review the CodeQL findings on the PR
 
-1. Open the new pull request (from the **Pull requests** tab). You may need to allow pending workflows to run toward the bottom of the PR.
+1. Open the new pull request (from the **Pull requests** tab). The **Code
+   Quality** and **Code Coverage** workflows come back as **"action required"**
+   and won't run until you approve them — scroll to the bottom of the PR and
+   click **Approve and run** on the pending workflows. If you skip this, the
+   CodeQL findings and coverage (Module 3.4) never appear and it looks broken.
 2. Wait for the **Code Quality** check to run. The **`github-code-quality[bot]`**
    posts **inline comments** on `promo.py` for the CodeQL findings (unused
    variable, identical comparison).
@@ -356,23 +397,25 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 
 1. Pick one finding you want to wave off (e.g. treat the identical-comparison as
    intentional for the demo).
-2. Use the finding's **⋯ / Dismiss** control and choose a reason (e.g. *Won't
-   fix* / *Used in tests* / *False positive*).
+2. Use the finding's **Dismiss finding** control and choose a reason (e.g.
+   *Won't fix* / *Used in tests* / *False positive*).
 3. Show that the dismissed finding drops out of the active list — useful for
    triaging noise.
 
 ### 3.6 Generate Copilot Autofix suggestions
 
 1. On one of the remaining CodeQL findings (e.g. the **unused variable**), open
-   the **Copilot Autofix** suggestion.
+   the finding's autofix. Depending on where you're looking you'll see it as
+   **Apply suggestion** (the inline autofix on the finding) or, from the
+   finding's dropdown menu, **Fix with Copilot**.
 2. Show the suggested diff that resolves the issue.
 
 ### 3.7 Add multiple fixes to a batch
 
 1. Navigate to the **Files changed** tab and click on the Code Quality Bot and/or CCR
    icons to view their comments in line.
-2. Where multiple findings each have an autofix, **add them to a batch** instead
-   of committing one at a time.
+2. Where multiple findings each have an autofix, use **Add suggestion to batch**
+   on each one instead of committing them one at a time.
 3. Commit the batch as a single set of changes and show the PR updating, the
    checks re-running, and the findings clearing.
 

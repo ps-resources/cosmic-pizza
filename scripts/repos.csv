@@ -1,4 +1,7 @@
 repository
+# SAMPLE ROWS — replace these with real "owner/repo" values before running.
+# The entries below are placeholders and WILL fail (they don't point at repos
+# you can configure). Lines starting with '#' and blank lines are ignored.
 CallMeGreg/cosmic-pizza
 your-org/another-service
 your-org/legacy-api
