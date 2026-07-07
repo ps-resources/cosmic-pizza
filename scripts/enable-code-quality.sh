@@ -111,6 +111,8 @@ echo
 
 # Skip the header row, ignore blank lines and #-comment lines.
 tail -n +2 "$CSV_FILE" | tr -d '\r' | while IFS= read -r repo; do
+  repo="${repo#"${repo%%[![:space:]]*}"}"  # trim leading whitespace
+  repo="${repo%"${repo##*[![:space:]]}"}"  # trim trailing whitespace
   [[ -z "$repo" ]] && continue
   [[ "$repo" == \#* ]] && continue
 
