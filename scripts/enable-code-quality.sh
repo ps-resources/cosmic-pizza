@@ -18,6 +18,13 @@
 #     (gh auth login). The token needs the `repo` scope.
 #   * Code Quality must be allowed for the org/enterprise that owns the repos.
 #   * GitHub Actions must be enabled on each repo (Code Quality runs on Actions).
+#     NOTE: this script enables Code Quality but does NOT enable Actions. If a
+#     repo has Actions turned off, the PATCH below still succeeds but no scan
+#     ever runs, so the repo stays blank on the dashboard. Turn Actions on first.
+#
+# Heads up — enablement is ASYNCHRONOUS. A successful request only *requests*
+# setup; the first CodeQL scan runs afterward on Actions and the org dashboard
+# fills in only once those scans complete. Run this well ahead of any demo.
 #
 # Usage:
 #   ./scripts/enable-code-quality.sh [path/to/repos.csv]
@@ -58,9 +65,10 @@ fi
 echo "Enabling Code Quality for repositories listed in: $CSV_FILE"
 echo
 
-# Skip the header row, ignore blank lines.
+# Skip the header row, ignore blank lines and #-comment lines.
 tail -n +2 "$CSV_FILE" | tr -d '\r' | while IFS= read -r repo; do
   [[ -z "$repo" ]] && continue
+  [[ "$repo" == \#* ]] && continue
 
   echo "→ $repo"
 
@@ -89,18 +97,24 @@ tail -n +2 "$CSV_FILE" | tr -d '\r' | while IFS= read -r repo; do
   echo "   Languages: $(echo "$detected" | tr '\n' ' ')"
 
   # 3) Enable Code Quality for exactly those languages.
-  if gh api \
-      --method PATCH \
-      -H "Accept: application/vnd.github+json" \
-      -H "X-GitHub-Api-Version: ${API_VERSION}" \
-      "/repos/${repo}/code-quality/setup" \
-      -f "state=configured" \
-      "${lang_args[@]}" \
-      >/dev/null 2>&1; then
+  #    Capture stderr so that if the request fails we can show the real API
+  #    error (e.g. an org/enterprise policy wall) instead of a generic message.
+  if api_error="$(
+      gh api \
+        --method PATCH \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: ${API_VERSION}" \
+        "/repos/${repo}/code-quality/setup" \
+        -f "state=configured" \
+        "${lang_args[@]}" \
+        2>&1 >/dev/null)"; then
     echo "   ✅ Code Quality enablement requested"
   else
     echo "   ⚠️  Failed (check that the repo exists, Actions is enabled, and"
     echo "       Code Quality is allowed for the owning org/enterprise)"
+    if [[ -n "$api_error" ]]; then
+      echo "       API error: ${api_error}"
+    fi
   fi
 done
 
