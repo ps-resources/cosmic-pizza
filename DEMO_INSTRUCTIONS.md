@@ -431,9 +431,20 @@ thresholds — so quality standards are enforced, not just reported.
 4. Review the general ruleset options: Enforcement status, Bypass list, Target branches.
 5. Scroll down to the **Rules** section and check the **Require code quality results** checkbox.
 6. Select the **Severity** dropdown that appears and highlight the options.
+7. Still in the **Rules** section, also check the **Restrict code coverage**
+   checkbox _(preview)_. In addition to requiring code quality results, this
+   enforces specific **code coverage thresholds** that must be met before a PR
+   can be merged.
+8. Expand **Show additional settings** and set the two thresholds:
+   * **Minimum coverage percentage** — the absolute floor (e.g. `60`). Pull
+     requests with coverage below this threshold are blocked.
+   * **Maximum coverage drop** — how many percentage points coverage may drop
+     relative to the default branch (e.g. `20`). Pull requests that reduce
+     coverage by more than this amount are blocked.
 
 ✅ **Module 3 done when:** you've shown CodeQL + CCR findings on one PR, dismissed
-one, autofixed one, batched multiple fixes, and reviewed enforcement via rulesets.
+one, autofixed one, batched multiple fixes, and reviewed enforcement via rulesets
+(code quality **and** coverage).
 
 ---
 
