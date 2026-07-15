@@ -213,7 +213,7 @@ org at once:
 2. In the sidebar, under **Security**, click **Code quality**.
 3. Next to **Repository access**, click the drop-down to select one of the options:
 
-<img width="1041" height="390" alt="Screenshot 2026-07-15 at 1 07 14 PM" src="https://github.com/user-attachments/assets/f29d374a-b383-4b07-a51d-bcb2a2bfdf44" />
+<img width="1041" height="390" alt="Organization Code Quality settings showing the Repository access dropdown options" src="https://github.com/user-attachments/assets/f29d374a-b383-4b07-a51d-bcb2a2bfdf44" />
 
 ### 1.4 Show the enablement API for automation use cases
 
