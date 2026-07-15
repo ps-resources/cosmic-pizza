@@ -3,23 +3,21 @@
 A step-by-step script for demoing **GitHub Code Quality** end to end using the
 **Cosmic Pizza** sample app.
 
-> [!NOTE]
+> [!IMPORTANT]
 > **Cost**
 > 
 > GitHub Code Quality is a paid product (~$10 / active committer / month on
 > enabled repos, plus usage-based billing for AI-powered capabilities). CodeQL
 > scans also consume **GitHub Actions minutes**. For product details, see:
 > <https://docs.github.com/code-security/concepts/about-code-quality>
-
-> [!IMPORTANT]
+>
 > **Where Code Quality runs**
 > 
 > Code Quality is available for **organization-owned repositories** on **GitHub
 > Team** and **GitHub Enterprise Cloud**. It is **not** on GitHub Enterprise
 > Server, and not on personal accounts. Make your demo copy inside a qualifying
 > **organization**.
-
-> [!NOTE]
+>
 > **Supported languages (CodeQL / "Standard findings")**
 >
 > C#, Go, Java, JavaScript, Python, Ruby, TypeScript. This sample app is **Python**.
@@ -206,29 +204,27 @@ from **`github-code-quality[bot]`** comparing the PR branch's coverage to `main`
 > Code coverage in pull requests works with **any language** that can emit a
 > Cobertura XML report — this app uses `pytest --cov`.
 
-### 1.3 Show how you *could* enable Code Quality at the org level
+### 1.3 Show how you can enable Code Quality at the org level
 
-You don't have to enable repo by repo. To turn it on for **every** repo in an
+You don't have to enable repo by repo. To turn it on across all (or a subset of) repos in an
 org at once:
 
 1. Go to the **organization's** **Settings**.
 2. In the sidebar, under **Security**, click **Code quality**.
-3. Toggle **Enable Code Quality** on to apply it to all repositories.
+3. Next to **Repository access**, click the drop-down to select one of the options:
 
-> [!NOTE]
-> Use organization-level enablement to roll Code Quality out broadly; use the API
-> below when you want a curated subset.
+<img width="1041" height="390" alt="Screenshot 2026-07-15 at 1 07 14 PM" src="https://github.com/user-attachments/assets/f29d374a-b383-4b07-a51d-bcb2a2bfdf44" />
 
-### 1.4 Show the enablement API for "many, but not all" repos
+### 1.4 Show the enablement API for automation use cases
 
-When you want Code Quality on a **specific list** of repos (not the whole org),
-script it with the **[Code Quality setup API](https://docs.github.com/rest/code-quality/code-quality)**:
+When you want Code Quality enabled as part of an automated process,
+consider using the **[Code Quality setup API](https://docs.github.com/rest/code-quality/code-quality)**:
 
 ```
 PATCH /repos/{owner}/{repo}/code-quality/setup
 ```
 
-This repo ships a ready-to-run example at
+This repo ships a ready-to-run example script at
 [`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh) that reads a
 [`scripts/repos.csv`](scripts/repos.csv) file and, for each repo, **detects the
 languages it uses** and enables Code Quality for the supported ones with the
