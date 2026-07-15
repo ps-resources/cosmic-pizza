@@ -11,11 +11,6 @@ Review** light them up.
 > **Facilitators:** follow [`DEMO_INSTRUCTIONS.md`](DEMO_INSTRUCTIONS.md) for
 > a full, step-by-step walkthrough (Modules 0–4).
 
-> [!WARNING]
-> **Preview notice:** GitHub Code Quality is in **public preview** and becomes
-> generally available on **July 20, 2026**. Features marked _(preview)_ in the
-> demo instructions may change.
-
 ## What's in here
 
 | Path | What it is |

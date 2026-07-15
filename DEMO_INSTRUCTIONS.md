@@ -3,15 +3,12 @@
 A step-by-step script for demoing **GitHub Code Quality** end to end using the
 **Cosmic Pizza** sample app.
 
-> [!WARNING]
-> **Preview notice**
+> [!NOTE]
+> **Cost**
 > 
-> GitHub Code Quality is in **public preview** and becomes **generally available
-> on July 20, 2026**. During the preview it is **free**, although CodeQL scans
-> consume **GitHub Actions minutes**. After GA it is a paid product
-> (~$10 / active committer / month on enabled repos, plus usage-based billing for
-> AI-powered capabilities). Anything tagged **_(preview)_** below may change
-> before GA, so re-check the docs the morning of your session:
+> GitHub Code Quality is a paid product (~$10 / active committer / month on
+> enabled repos, plus usage-based billing for AI-powered capabilities). CodeQL
+> scans also consume **GitHub Actions minutes**. For product details, see:
 > <https://docs.github.com/code-security/concepts/about-code-quality>
 
 > [!IMPORTANT]
@@ -133,7 +130,7 @@ Actions to create and approve pull requests" is checked, and Actions is enabled.
 > Start it now so findings are ready for Module 2. (Talk track tip: while it
 > runs, walk through the app and the intentional issues.)
 
-### 1.2 Set up code coverage _(preview)_
+### 1.2 Set up code coverage
 
 Code Quality can show **code coverage** on pull requests. To enable it, add a
 workflow that runs the tests, produces a **Cobertura XML** report, and uploads it
@@ -153,7 +150,6 @@ name: Code Coverage
 # to GitHub Code Quality. Once Code Quality is enabled for the repo, a coverage
 # summary from github-code-quality[bot] appears on every pull request.
 #
-# Code coverage in pull requests is in PUBLIC PREVIEW (subject to change).
 # Uploading requires the `code-quality: write` permission below.
 
 on:
@@ -207,11 +203,10 @@ Then in **Module 3** you'll see the coverage results land on the PR as a comment
 from **`github-code-quality[bot]`** comparing the PR branch's coverage to `main`.
 
 > [!NOTE]
-> **_(preview)_** Code coverage in pull requests is in public preview. It works
-> with **any language** that can emit a Cobertura XML report — this app uses
-> `pytest --cov`.
+> Code coverage in pull requests works with **any language** that can emit a
+> Cobertura XML report — this app uses `pytest --cov`.
 
-### 1.3 Show how you *could* enable Code Quality at the org level _(preview)_
+### 1.3 Show how you *could* enable Code Quality at the org level
 
 You don't have to enable repo by repo. To turn it on for **every** repo in an
 org at once:
@@ -221,10 +216,10 @@ org at once:
 3. Toggle **Enable Code Quality** on to apply it to all repositories.
 
 > [!NOTE]
-> **_(preview)_** Organization-level enablement is in public preview. Use it to
-> roll Code Quality out broadly; use the API below when you want a curated subset.
+> Use organization-level enablement to roll Code Quality out broadly; use the API
+> below when you want a curated subset.
 
-### 1.4 Show the enablement API for "many, but not all" repos _(preview)_
+### 1.4 Show the enablement API for "many, but not all" repos
 
 When you want Code Quality on a **specific list** of repos (not the whole org),
 script it with the **[Code Quality setup API](https://docs.github.com/rest/code-quality/code-quality)**:
@@ -306,7 +301,7 @@ By now the first default-branch scan has completed.
      **severity**.
    * Open the finding to see the highlighted code and the explanation.
 
-### 2.2 Review AI findings _(preview)_
+### 2.2 Review AI findings
 
 1. In the same tab, switch to **AI findings**.
 2. Explain the difference: this is GitHub's **AI-powered analysis** of files
@@ -315,8 +310,8 @@ By now the first default-branch scan has completed.
    languages.
 
 > [!NOTE]
-> **_(preview)_** AI findings are part of the preview and presented separately
-> from the deterministic CodeQL "Standard findings."
+> AI findings are presented separately from the deterministic CodeQL "Standard
+> findings."
 
 ### 2.3 Generate a fix
 
@@ -385,8 +380,8 @@ This is the headline demo: a PR that introduces fresh problems and shows both
    CodeQL: CCR blends an LLM with deterministic tools for context-aware feedback.
 
 > [!NOTE]
-> **_(preview)_** Copilot Code Review's newest capabilities (deterministic
-> detections, agentic fix hand-off) are in public preview and may change.
+> Copilot Code Review's newest capabilities include deterministic detections and
+> agentic fix hand-off.
 
 ### 3.4 Review the code coverage results
 
@@ -419,7 +414,7 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 3. Commit the batch as a single set of changes and show the PR updating, the
    checks re-running, and the findings clearing.
 
-### 3.8 Quality gates with rulesets _(preview)_
+### 3.8 Quality gates with rulesets
 
 Mention that **rulesets** can enforce quality gates on pull requests — blocking
 merges that don't meet **maintainability**, **reliability**, or **coverage**
@@ -432,7 +427,7 @@ thresholds — so quality standards are enforced, not just reported.
 5. Scroll down to the **Rules** section and check the **Require code quality results** checkbox.
 6. Select the **Severity** dropdown that appears and highlight the options.
 7. Still in the **Rules** section, also check the **Restrict code coverage**
-   checkbox _(preview)_. In addition to requiring code quality results, this
+   checkbox. In addition to requiring code quality results, this
    enforces specific **code coverage thresholds** that must be met before a PR
    can be merged.
 8. Expand **Show additional settings** and set the two thresholds:
@@ -449,10 +444,6 @@ one, autofixed one, batched multiple fixes, and reviewed enforcement via ruleset
 ---
 
 ## Module 4 — Organization insights
-
-> [!NOTE]
-> **_(preview)_** The organization-level Code Quality dashboard is in public
-> preview.
 
 ### 4.1 Open the org-level Code Quality overview
 
