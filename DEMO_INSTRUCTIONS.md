@@ -31,10 +31,10 @@ A step-by-step script for demoing **GitHub Code Quality** end to end using the
 | Module | Theme | Time |
 | --- | --- | --- |
 | 0 | Before the training (setup) | 10 min |
-| 1 | Enablement & configuration | 10 min |
-| 2 | Review findings & fix them | 10 min |
-| 3 | Pull request workflow | 10 min |
-| 4 | Organization insights | 5 min |
+| 1 | Enablement & configuration | 7 min |
+| 2 | Review findings & fix them | 5 min |
+| 3 | Pull request workflow | 12 min |
+| 4 | Organization insights | 2 min |
 
 ---
 
