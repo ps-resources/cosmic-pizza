@@ -10,8 +10,7 @@
 # Quality out to a specific *subset* of repos (rather than the whole org via the
 # org-level toggle).
 #
-# NOTE: The Code Quality REST API is in PUBLIC PREVIEW and uses the dated API
-# version 2026-03-10. Both may change before general availability (2026-07-20).
+# NOTE: The Code Quality REST API uses the dated API version 2026-03-10.
 #
 # Prerequisites:
 #   * gh CLI authenticated as a user/admin who can configure the target repos
