@@ -328,8 +328,8 @@ autofix, and opened a fix PR.
 
 ## Module 3 — Pull request workflow
 
-This is the headline demo: a PR that introduces fresh problems and shows both
-**CodeQL** and **Copilot Code Review (CCR)** reacting in the PR.
+This is the headline demo: a PR that introduces fresh problems and shows
+**CodeQL** reacting in the PR.
 
 ### 3.1 Run the workflow to create a "bad code" PR
 
@@ -346,13 +346,6 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 > | --- | --- | --- |
 > | Unused local variable (`unused_tax`) | `apply_discount()` | CodeQL — maintainability |
 > | Comparison of identical values (`subtotal == subtotal`) | `apply_discount()` | CodeQL — reliability |
-> | Mutable default argument (`history=[]`) | `apply_discount()` | Copilot Code Review (and often CodeQL too) |
-> | O(n²) loop | `frequency_bonus()` | Copilot Code Review |
-
-> [!NOTE]
-> The **mutable default argument** can surface from **both** tools — Copilot Code
-> Review flags it, and the **github-code-quality (CodeQL)** bot often reports it
-> as well. Don't be surprised to see the same issue called out twice.
 
 ### 3.2 Review the CodeQL findings on the PR
 
@@ -360,31 +353,19 @@ This is the headline demo: a PR that introduces fresh problems and shows both
    Quality** and **Code Coverage** workflows come back as **"action required"**
    and won't run until you approve them — scroll to the bottom of the PR and
    click **Approve and run** on the pending workflows. If you skip this, the
-   CodeQL findings and coverage (Module 3.4) never appear and it looks broken.
+   CodeQL findings and coverage (Module 3.3) never appear and it looks broken.
 2. Wait for the **Code Quality** check to run. The **`github-code-quality[bot]`**
    posts **inline comments** on `promo.py` for the CodeQL findings (unused
    variable, identical comparison).
 3. Open the **Files changed** tab to read each inline finding and its
    explanation.
 
-### 3.3 Review the Copilot Code Review findings
-
-1. If Copilot Code Review isn't already running on PRs, request it: in the PR,
-   open **Reviewers** and request a review from **Copilot**.
-2. Copilot Code Review posts its own comments — point out the **performance**
-   (O(n²) loop) and the **mutable default argument** call-outs. Contrast this with
-   CodeQL: CCR blends an LLM with deterministic tools for context-aware feedback.
-
-> [!NOTE]
-> Copilot Code Review's newest capabilities include deterministic detections and
-> agentic fix hand-off.
-
-### 3.4 Review the code coverage results
+### 3.3 Review the code coverage results
 
 1. Note that the code coverage results show both the stats for the
    target branch and the head branch, with a breakdown per file.
 
-### 3.5 Dismiss a finding
+### 3.4 Dismiss a finding
 
 1. Pick one finding you want to wave off (e.g. treat the identical-comparison as
    intentional for the demo).
@@ -393,7 +374,7 @@ This is the headline demo: a PR that introduces fresh problems and shows both
 3. Show that the dismissed finding drops out of the active list — useful for
    triaging noise.
 
-### 3.6 Generate Copilot Autofix suggestions
+### 3.5 Generate Copilot Autofix suggestions
 
 1. On one of the remaining CodeQL findings (e.g. the **unused variable**), open
    the finding's autofix. Depending on where you're looking you'll see it as
@@ -401,16 +382,16 @@ This is the headline demo: a PR that introduces fresh problems and shows both
    finding's dropdown menu, **Fix with Copilot**.
 2. Show the suggested diff that resolves the issue.
 
-### 3.7 Add multiple fixes to a batch
+### 3.6 Add multiple fixes to a batch
 
-1. Navigate to the **Files changed** tab and click on the Code Quality Bot and/or CCR
-   icons to view their comments in line.
+1. Navigate to the **Files changed** tab and click on the Code Quality Bot icon
+   to view its comments in line.
 2. Where multiple findings each have an autofix, use **Add suggestion to batch**
    on each one instead of committing them one at a time.
 3. Commit the batch as a single set of changes and show the PR updating, the
    checks re-running, and the findings clearing.
 
-### 3.8 Quality gates with rulesets
+### 3.7 Quality gates with rulesets
 
 Mention that **rulesets** can enforce quality gates on pull requests — blocking
 merges that don't meet **maintainability**, **reliability**, or **coverage**
@@ -433,7 +414,7 @@ thresholds — so quality standards are enforced, not just reported.
      relative to the default branch (e.g. `20`). Pull requests that reduce
      coverage by more than this amount are blocked.
 
-✅ **Module 3 done when:** you've shown CodeQL + CCR findings on one PR, dismissed
+✅ **Module 3 done when:** you've shown CodeQL findings on one PR, dismissed
 one, autofixed one, batched multiple fixes, and reviewed enforcement via rulesets
 (code quality **and** coverage).
 
