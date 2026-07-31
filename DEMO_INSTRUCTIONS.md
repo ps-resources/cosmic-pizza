@@ -134,7 +134,7 @@ Code Quality ships two kinds of analysis: deterministic **CodeQL** results
 ("Standard findings") and **AI findings**. AI findings are off by default, so
 turn them on now — you'll review them in **Module 2.2**.
 
-1. Stay on **Settings** → **Code quality**.
+1. Stay on **Settings** ▸ **Code quality**.
 2. Under **Code Quality analysis**, find the **AI findings** setting —
    *"Generate AI-powered findings for code quality issues on push to the default
    branch."*
