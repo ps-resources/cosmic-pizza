@@ -102,7 +102,7 @@ Code Quality-enabled repo in the org**. A fresh org that only contains
 `cosmic-pizza-demo` shows a **single bubble** and an almost-empty chart. Ahead of
 the session, enable Code Quality on a handful of other repos so the bubble chart
 and table actually tell a story — the enablement script
-([`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh), Module 1.4)
+([`scripts/enable-code-quality.sh`](scripts/enable-code-quality.sh), Module 1.5)
 is perfect for this.
 
 > [!IMPORTANT]
@@ -128,7 +128,25 @@ Actions to create and approve pull requests" is checked, and Actions is enabled.
 > Start it now so findings are ready for Module 2. (Talk track tip: while it
 > runs, walk through the app and the intentional issues.)
 
-### 1.2 Set up code coverage
+### 1.2 Turn on AI findings
+
+Code Quality ships two kinds of analysis: deterministic **CodeQL** results
+("Standard findings") and **AI findings**. AI findings are off by default, so
+turn them on now — you'll review them in **Module 2.2**.
+
+1. Stay on **Settings** → **Code quality**.
+2. Under **Code Quality analysis**, find the **AI findings** setting —
+   *"Generate AI-powered findings for code quality issues on push to the default
+   branch."*
+3. Flip the toggle from **Off** to **On**.
+
+> [!TIP]
+> AI findings are generated on **push to the default branch** and scan the
+> **most recently changed files** — in any language, not just the ones CodeQL
+> supports. The **Languages** checkboxes below the toggle only control the full
+> CodeQL scan of the codebase.
+
+### 1.3 Set up code coverage
 
 Code Quality can show **code coverage** on pull requests. To enable it, add a
 workflow that runs the tests, produces a **Cobertura XML** report, and uploads it
@@ -204,7 +222,7 @@ from **`github-code-quality[bot]`** comparing the PR branch's coverage to `main`
 > Code coverage in pull requests works with **any language** that can emit a
 > Cobertura XML report — this app uses `pytest --cov`.
 
-### 1.3 Show how you can enable Code Quality at the org level
+### 1.4 Show how you can enable Code Quality at the org level
 
 You don't have to enable repo by repo. To turn it on across all (or a subset of) repos in an
 org at once:
@@ -215,7 +233,7 @@ org at once:
 
 <img width="1041" height="390" alt="Organization Code Quality settings showing the Repository access dropdown options" src="https://github.com/user-attachments/assets/f29d374a-b383-4b07-a51d-bcb2a2bfdf44" />
 
-### 1.4 Show the enablement API for automation use cases
+### 1.5 Show the enablement API for automation use cases
 
 When you want Code Quality enabled as part of an automated process,
 consider using the **[Code Quality setup API](https://docs.github.com/rest/code-quality/code-quality)**:
@@ -270,8 +288,8 @@ gh api --method PATCH \
   -f 'languages[]=javascript-typescript'
 ```
 
-✅ **Module 1 done when:** the repo shows Code Quality enabled and the first scan
-has finished on the **Actions** tab.
+✅ **Module 1 done when:** the repo shows Code Quality enabled with **AI
+findings** turned on, and the first scan has finished on the **Actions** tab.
 
 ---
 
@@ -299,7 +317,8 @@ By now the first default-branch scan has completed.
 
 ### 2.2 Review AI findings
 
-1. In the same tab, switch to **AI findings**.
+1. In the same tab, switch to **AI findings** (you turned this on in
+   **Module 1.2**).
 2. Explain the difference: this is GitHub's **AI-powered analysis** of files
    **recently pushed to the default branch** (not the whole codebase), shown on a
    separate dashboard, and it can surface issues beyond the CodeQL-supported
