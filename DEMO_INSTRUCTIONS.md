@@ -492,4 +492,3 @@ explained how leaders prioritize remediation.
 - Code Quality REST API: <https://docs.github.com/rest/code-quality/code-quality>
 - Org dashboard: <https://docs.github.com/code-security/how-tos/view-and-interpret-data/analyze-organization-data/explore-code-quality>
 - GA announcement (Jul 20, 2026): <https://github.blog/changelog/2026-06-16-github-code-quality-generally-available-july-20-2026/>
-- Agentic Autofix announcement (Sep 9, 2026): <https://github.blog/changelog/2026-09-09-remediate-code-quality-findings-with-agentic-autofix/>
