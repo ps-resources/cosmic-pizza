@@ -330,8 +330,7 @@ By now the first default-branch scan has completed.
 
 ### 2.3 Assign up to 25 findings to Copilot with Agentic Autofix
 
-1. Return to the **Standard findings** list and select one of the findings types. Then, select several instances of that finding. You can
-   select and remediate **up to 25 findings at once**.
+1. Return to the **Standard findings** list, choose a finding type, then select several instances of that finding. You can select **up to 25 findings at once**.
 2. Click **Assign to Copilot**. This same Agentic Autofix flow works whether you
    select one finding or 25, replacing the previous one-at-a-time **Generate
    fix** action.
