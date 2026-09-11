@@ -328,20 +328,28 @@ By now the first default-branch scan has completed.
 > AI findings are presented separately from the deterministic CodeQL "Standard
 > findings."
 
-### 2.3 Generate a fix
+### 2.3 Assign up to 25 findings to Copilot with Agentic Autofix
 
-1. Open one of the Standard findings (e.g. the **unused import** in
-   `pricing.py`).
-2. Use the **Copilot Autofix** suggestion attached to the finding to generate a
-   proposed fix.
+1. Return to the **Standard findings** list, choose a finding type, then select
+   several instances of that finding. You can select **up to 25 findings at once**.
+2. Click **Assign to Copilot**. This same Agentic Autofix flow works whether you
+   select one finding or 25, replacing the previous one-at-a-time **Generate
+   fix** action.
+3. Explain that Copilot works autonomously on a branch, validates its changes by
+   rerunning CodeQL, and opens a pull request for review.
 
-### 2.4 Open a PR with the fixes
+> [!NOTE]
+> Agentic Autofix is in **public preview** and consumes **Copilot AI credits**.
+> Always review the generated changes before merging them.
 
-1. Wait a moment for Copilot Autofix to create a PR with the requested fix(es).
-2. Show the PR's changed files, and mention that we will take a closer look at the pull request workflow in the next demo.
+### 2.4 Review the Agentic Autofix PR
+
+1. Wait for Copilot to open a PR that addresses the selected findings.
+2. Show the PR's changed files and validation results, then mention that you will
+   take a closer look at the pull request workflow in the next module.
 
 ✅ **Module 2 done when:** you've shown Standard + AI findings, generated an
-autofix, and opened a fix PR.
+Agentic Autofix PR for multiple findings, and reviewed Copilot's changes.
 
 ---
 
