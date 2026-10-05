@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-11</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-11 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-11"
+        class="scene"
+        data-composition-id="slide-11"
+        data-start="0"
+        data-duration="8"
+        data-label="Bulk remediation"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-11"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-11-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Remediation</span>
+            </div>
+
+            <div class="body split-body">
+            <h2 class="claim">Copilot can fix findings in bulk and open the pull request for review.</h2>
+            <div class="split">
+              <div class="points">
+                <div class="pills a"><span class="pill blue">Public preview</span><span class="pill orange">Needs a Copilot license</span></div>
+                <p class="point a">Select up to 25 findings of one type</p>
+                <p class="point a">Copilot works on a branch and re-runs CodeQL</p>
+                <p class="point a">You review the pull request before merge</p>
+                
+              </div>
+              <figure class="shot a">
+                <div class="shot-frame"><img src="assets/screens/shot-08-assign-to-copilot.gif" alt="Assign findings to Copilot, then a suggested fix" /></div>
+                <figcaption>Standard findings › Assign to Copilot</figcaption>
+              </figure>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Insights</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-11 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-11 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-11-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-11"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

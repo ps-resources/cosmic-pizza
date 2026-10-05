@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-13</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-13 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-13"
+        class="scene"
+        data-composition-id="slide-13"
+        data-start="0"
+        data-duration="8"
+        data-label="Pilot"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-13"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-13-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Next step</span>
+            </div>
+
+            <div class="body ask-body">
+            <h2 class="claim">Start with a pilot on a few representative repositories.</h2>
+            <div class="asks">
+              <div class="ask-row a"><span class="num">1</span><p>Pick three to five repositories across your main languages</p></div>
+              <div class="ask-row a"><span class="num">2</span><p>Run the pull request, coverage and ruleset workflow on them</p></div>
+              <div class="ask-row a"><span class="num">3</span><p>Agree what success looks like before expanding</p></div>
+            </div>
+            <p class="question a">Which repositories and languages should the pilot cover?</p>
+            </div>
+
+            <div class="footer">
+              <span>Decision</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-13 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-13 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-13-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-13"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

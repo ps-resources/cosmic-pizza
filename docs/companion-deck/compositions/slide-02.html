@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-02</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-02 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-02"
+        class="scene"
+        data-composition-id="slide-02"
+        data-start="0"
+        data-duration="8"
+        data-label="One workflow"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-02"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-02-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">How it works</span>
+            </div>
+
+            <div class="body flow-body">
+            <h2 class="claim">Code Quality puts findings, fixes and merge rules in one pull request.</h2>
+            <div class="flow">
+              <div class="step a"><span class="num">1</span><h3>Pull request opened</h3><p class="sub">A developer pushes a change</p></div>
+              <div class="step a"><span class="num">2</span><h3>CodeQL scans the changes</h3><p class="sub">Deterministic rules</p></div>
+              <div class="step a"><span class="num">3</span><h3>Findings appear inline</h3><p class="sub">With a one-click fix</p></div>
+              <div class="step a"><span class="num">4</span><h3>Rulesets gate the merge</h3><p class="sub">Quality and coverage</p></div>
+              <div class="step a"><span class="num">5</span><h3>Dashboards roll it up</h3><p class="sub">Repository and organization</p></div>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Overview</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-02 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-02 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-02-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-02"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-06</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-06 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-06"
+        class="scene"
+        data-composition-id="slide-06"
+        data-start="0"
+        data-duration="8"
+        data-label="AI findings"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-06"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-06-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">AI findings</span>
+            </div>
+
+            <div class="body split-body">
+            <h2 class="claim">AI findings flag issues in recent changes that rules do not cover.</h2>
+            <div class="split">
+              <div class="points">
+                <div class="pills a"><span class="pill blue">Public preview</span></div>
+                <p class="point a">Turned on per repository</p>
+                <p class="point a">Up to five findings in each of five recently changed files</p>
+                <p class="point a">Uses AI credits; fixes can go to Copilot</p>
+                
+              </div>
+              <figure class="shot a">
+                <div class="shot-frame"><img src="assets/screens/shot-03-ai-findings.png" alt="AI findings page" /></div>
+                <figcaption>Security and quality › Code quality › AI findings</figcaption>
+              </figure>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Analysis</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-06 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-06 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-06-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-06"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

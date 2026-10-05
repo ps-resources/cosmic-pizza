@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-09</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-09 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-09"
+        class="scene"
+        data-composition-id="slide-09"
+        data-start="0"
+        data-duration="8"
+        data-label="Quality gates"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-09"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-09-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Quality gates</span>
+            </div>
+
+            <div class="body split-body">
+            <h2 class="claim">Rulesets turn quality and coverage thresholds into merge requirements.</h2>
+            <div class="split">
+              <div class="points">
+                
+                <p class="point a">Block on findings at a severity you choose</p>
+                <p class="point a">Set a minimum coverage and a maximum drop</p>
+                <p class="point a">Require the coverage upload check before merge</p>
+                
+              </div>
+              <figure class="shot a">
+                <div class="shot-frame"><img src="assets/screens/shot-06-ruleset-settings.gif" alt="Ruleset settings: Require code quality results and Restrict code coverage" /></div>
+                <figcaption>Settings › Rules › Rulesets › Branch rules</figcaption>
+              </figure>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Pull request workflow</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-09 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-09 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-09-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-09"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

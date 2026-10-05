@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-01</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-01 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-01"
+        class="scene"
+        data-composition-id="slide-01"
+        data-start="0"
+        data-duration="8"
+        data-label="Title"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-01"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-01-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Capabilities demo</span>
+            </div>
+
+            <div class="body title-body">
+            <div class="hero">
+              <h1 class="claim" id="slide-01-title">Quality gates that live where your code is reviewed.</h1>
+              <p class="lead a">A technical walkthrough of GitHub Code Quality: findings, fixes, coverage, gates and dashboards in the pull request.</p>
+              <div class="title-rule a" data-layout-ignore></div>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Introduction</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-01 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-01 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-01-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-01"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

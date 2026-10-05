@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-05</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-05 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-05"
+        class="scene"
+        data-composition-id="slide-05"
+        data-start="0"
+        data-duration="8"
+        data-label="Standard findings"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-05"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-05-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Findings</span>
+            </div>
+
+            <div class="body split-body">
+            <h2 class="claim">Every finding explains the problem and ships with a fix.</h2>
+            <div class="split">
+              <div class="points">
+                
+                <p class="point a">Each is Reliability or Maintainability</p>
+                <p class="point a">Severity is Error, Warning or Note</p>
+                <p class="point a">Includes an explanation and a suggested fix</p>
+                
+              </div>
+              <figure class="shot a">
+                <div class="shot-frame"><img src="assets/screens/shot-02-standard-findings.gif" alt="Standard findings list, then the detail of one finding" /></div>
+                <figcaption>Security and quality › Code quality › Standard findings</figcaption>
+              </figure>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Analysis</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-05 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-05 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-05-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-05"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

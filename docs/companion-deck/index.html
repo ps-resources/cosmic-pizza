@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>GitHub Code Quality: capabilities demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <script type="application/hyperframes-slideshow+json">
+{
+  "slides": [
+    {
+      "sceneId": "slide-01",
+      "notes": "TITLE — 1 minute. Set the agenda for the session and ask which languages and coverage tools the audience uses. Their answers decide which demo modules to slow down for."
+    },
+    {
+      "sceneId": "slide-02",
+      "notes": "OVERVIEW — 2 minutes. Walk left to right once and stress that all of it happens where developers already review code. State early that Code Quality runs on GitHub Enterprise Cloud and Team and is not available on GitHub Enterprise Server. Pause and ask whether that matches how their reviews work."
+    },
+    {
+      "sceneId": "slide-03",
+      "notes": "ENABLEMENT — 2 minutes. Switch to the live demo (Module 1.1 to 1.5): repo settings, languages, runner label, the org repository-access options and enforce access, and the setup API. An initial scan runs on the default branch after enabling; weekly scans start only after the first push or pull request. Ask how they structure organizations and whether they would want enforcement."
+    },
+    {
+      "sceneId": "slide-04",
+      "notes": "LANGUAGES — 2 minutes. Be direct: a standalone quality platform supports many more languages than CodeQL's seven. Ask which languages carry most of their code and size how much falls inside the seven. Position AI findings as extra signal outside those languages, never as an equivalent: they are in public preview, not deterministic and not a merge gate."
+    },
+    {
+      "sceneId": "slide-05",
+      "notes": "FINDINGS — 2 minutes. Live demo Module 2.1: open one finding and show the rule, category, severity and highlighted code. The rules are a curated, high-precision set of CodeQL queries; custom rules and per-rule configuration are not available today, so say that plainly if asked. Repository scores follow the worst finding: Excellent, Good, Fair or Poor."
+    },
+    {
+      "sceneId": "slide-06",
+      "notes": "AI FINDINGS — 2 minutes. Live demo Modules 1.2 and 2.2. Be honest about maturity: public preview, results can change from run to run, shown in the backlog and not on pull requests, and not part of the repository scores. Expect a question about what code is sent to the model; answer from current GitHub documentation, not from memory."
+    },
+    {
+      "sceneId": "slide-07",
+      "notes": "PULL REQUESTS — 3 minutes. Live demo Modules 3.1 to 3.6 on the staged pull request: show the bot comment, apply one suggestion, batch two, dismiss one, then watch checks re-run. Pull requests get CodeQL findings only; if they want AI review of pull requests, that is Copilot code review, a separate feature."
+    },
+    {
+      "sceneId": "slide-08",
+      "notes": "COVERAGE — 3 minutes. Live demo Module 3.3. Coverage is measured by their own tooling and uploaded as Cobertura XML; only line coverage is used. Java and Go need a conversion step (JaCoCo to Cobertura, gocover-cobertura). The workflow must also run on the default branch to create a baseline. Coverage appears on pull requests, not on the dashboards, so set that expectation. Ask which coverage tools they use."
+    },
+    {
+      "sceneId": "slide-09",
+      "notes": "GATES — 3 minutes. Live demo Module 3.7: Require code quality results with a severity threshold, then Restrict code coverage with minimum and maximum-drop values. Make each coverage-upload status check a required check, because the coverage rule does not wait for uploads to finish. The coverage rule is in public preview."
+    },
+    {
+      "sceneId": "slide-10",
+      "notes": "DASHBOARDS — 2 minutes. Live demo Module 4: the score bubble chart, the repository table and a drill-down. Scores come from standard findings only. Trends use daily snapshots and history starts when snapshots began, so a rising count after enabling more repositories is not a quality decline. Organization owners see every enabled repository; other members see the ones they can access."
+    },
+    {
+      "sceneId": "slide-11",
+      "notes": "COPILOT — 2 minutes. Show the already-opened pull request from Modules 2.3 and 2.4 rather than waiting live. Public preview, needs a Copilot license, and consumes AI credits. Always review the changes. If their organization restricts Copilot models, AI scans can currently fail, so check that before promising it."
+    },
+    {
+      "sceneId": "slide-12",
+      "notes": "PRICING — 2 minutes. Confirm current list pricing in the GitHub billing documentation before quoting it. An active committer is anyone who pushed to an enabled repository in the last 90 days, counted once across the organization. Ask for an active committer count and which repositories to enable first. Self-hosted runners avoid Actions minutes; AI credits come from the shared pool."
+    },
+    {
+      "sceneId": "slide-13",
+      "notes": "PILOT — 2 minutes. Close on the question and stop talking. Offer to scope the pilot together. If asked about future features, do not improvise: point to the GitHub changelog and documentation and offer to follow up. Capture owners and dates in the follow-up, not on the slide."
+    }
+  ],
+  "slideSequences": []
+}
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="root"
+      data-start="0"
+      data-duration="104"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div
+        id="mount-slide-01"
+        class="clip slide-slot"
+        data-composition-id="slide-01"
+        data-composition-src="compositions/slide-01.html"
+        data-start="0"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Title"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-02"
+        class="clip slide-slot"
+        data-composition-id="slide-02"
+        data-composition-src="compositions/slide-02.html"
+        data-start="8"
+        data-duration="8"
+        data-track-index="1"
+        data-label="One workflow"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-03"
+        class="clip slide-slot"
+        data-composition-id="slide-03"
+        data-composition-src="compositions/slide-03.html"
+        data-start="16"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Enablement"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-04"
+        class="clip slide-slot"
+        data-composition-id="slide-04"
+        data-composition-src="compositions/slide-04.html"
+        data-start="24"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Languages and analysis"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-05"
+        class="clip slide-slot"
+        data-composition-id="slide-05"
+        data-composition-src="compositions/slide-05.html"
+        data-start="32"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Standard findings"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-06"
+        class="clip slide-slot"
+        data-composition-id="slide-06"
+        data-composition-src="compositions/slide-06.html"
+        data-start="40"
+        data-duration="8"
+        data-track-index="1"
+        data-label="AI findings"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-07"
+        class="clip slide-slot"
+        data-composition-id="slide-07"
+        data-composition-src="compositions/slide-07.html"
+        data-start="48"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Pull request feedback"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-08"
+        class="clip slide-slot"
+        data-composition-id="slide-08"
+        data-composition-src="compositions/slide-08.html"
+        data-start="56"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Coverage"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-09"
+        class="clip slide-slot"
+        data-composition-id="slide-09"
+        data-composition-src="compositions/slide-09.html"
+        data-start="64"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Quality gates"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-10"
+        class="clip slide-slot"
+        data-composition-id="slide-10"
+        data-composition-src="compositions/slide-10.html"
+        data-start="72"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Dashboards"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-11"
+        class="clip slide-slot"
+        data-composition-id="slide-11"
+        data-composition-src="compositions/slide-11.html"
+        data-start="80"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Bulk remediation"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-12"
+        class="clip slide-slot"
+        data-composition-id="slide-12"
+        data-composition-src="compositions/slide-12.html"
+        data-start="88"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Licensing and pricing"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="mount-slide-13"
+        class="clip slide-slot"
+        data-composition-id="slide-13"
+        data-composition-src="compositions/slide-13.html"
+        data-start="96"
+        data-duration="8"
+        data-track-index="1"
+        data-label="Pilot"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+    </div>
+
+    <script>
+      window.__timelines["root"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

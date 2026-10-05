@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-12</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-12 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-12"
+        class="scene"
+        data-composition-id="slide-12"
+        data-start="0"
+        data-duration="8"
+        data-label="Licensing and pricing"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-12"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-12-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Licensing</span>
+            </div>
+
+            <div class="body rail3-body">
+            <h2 class="claim">Cost follows active committers, plus the scans and AI you choose to run.</h2>
+            <div class="rail3">
+              <div class="col a"><div class="big">$10</div><p class="sub">per active committer each month, list price</p></div>
+              <div class="col a"><div class="big">Actions</div><p class="sub">minutes for each scan; none on self-hosted runners</p></div>
+              <div class="col a"><div class="big">AI credits</div><p class="sub">for AI findings and Copilot fixes; 1 credit is $0.01</p></div>
+            </div>
+            <p class="note a">Code Quality is its own license. It does not use a GitHub Advanced Security license.</p>
+            </div>
+
+            <div class="footer">
+              <span>Evaluation</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-12 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-12 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-12-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-12"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

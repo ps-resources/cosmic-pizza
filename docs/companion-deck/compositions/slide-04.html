@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>slide-04</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #scene-slide-04 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+
+      <div
+        id="scene-slide-04"
+        class="scene"
+        data-composition-id="slide-04"
+        data-start="0"
+        data-duration="8"
+        data-label="Languages and analysis"
+        data-width="1920"
+        data-height="1080"
+      >
+        <section
+          id="clip-slide-04"
+          class="clip"
+          data-start="0"
+          data-duration="8"
+          data-track-index="1"
+        >
+          <div class="ambient one slide-04-ambient" data-layout-ignore></div>
+          <div class="frame">
+            <div class="topbar">
+              <div class="brand"><span>GitHub Code Quality</span></div>
+              <span class="slide-kicker">Coverage of analysis</span>
+            </div>
+
+            <div class="body zones-body">
+            <h2 class="claim">Rule-based analysis covers seven languages; AI findings reach past them.</h2>
+            <div class="zones">
+              <div class="zone green a">
+                <div class="zone-head"><h3>Standard findings</h3><span class="pill green">Generally available</span></div>
+                <p class="zone-line">CodeQL rules, same result every run</p>
+                <p class="zone-line">C#, Go, Java, JavaScript, Python, Ruby, TypeScript</p>
+                <p class="zone-line">Shown on pull requests and the default branch</p>
+              </div>
+              <div class="zone blue a">
+                <div class="zone-head"><h3>AI findings</h3><span class="pill blue">Public preview</span></div>
+                <p class="zone-line">A language model reviews recent changes</p>
+                <p class="zone-line">Works in any language</p>
+                <p class="zone-line">Advisory: backlog only, not on pull requests</p>
+              </div>
+            </div>
+            </div>
+
+            <div class="footer">
+              <span>Analysis</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(
+            "#scene-slide-04 .claim",
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+            0.2,
+          );
+          tl.fromTo(
+            "#scene-slide-04 .a",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 },
+            0.55,
+          );
+          tl.fromTo(
+            ".slide-04-ambient",
+            { scale: 0.97 },
+            { scale: 1.04, duration: 7.4, ease: "sine.inOut" },
+            0.2,
+          );
+          window.__timelines["slide-04"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

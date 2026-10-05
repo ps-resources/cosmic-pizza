@@ -1,0 +1,10 @@
+{
+  "name": "github-code-quality-demo-deck",
+  "private": true,
+  "description": "Companion slideshow for the GitHub Code Quality capabilities demo.",
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.127 present .",
+    "check": "npx --yes hyperframes@0.8.127 check ."
+  }
+}
