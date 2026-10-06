@@ -366,12 +366,6 @@ This is the headline demo: a PR that introduces fresh problems and shows
 4. Wait ~30–60s. The workflow creates a branch, adds `pizzeria/promo.py`, and
    opens a pull request titled **"Add loyalty promo feature."**
 
-Each run attempt uses a distinct branch named
-`demo/loyalty-promo-<run_number>-<run_attempt>`. Rerunning the job creates a fresh
-branch and PR rather than updating a previous PR, so a branch left behind by a
-failed attempt does not block the rerun. The PR creation permission from
-Module 0.2 is still required.
-
 > [!NOTE]
 > **What it injects (so you know what to point at):**
 >
