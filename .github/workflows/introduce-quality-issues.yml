@@ -44,7 +44,7 @@ jobs:
       - name: Create a feature branch
         id: branch
         run: |
-          BRANCH="demo/loyalty-promo-${{ github.run_number }}"
+          BRANCH="demo/loyalty-promo-${{ github.run_number }}-${{ github.run_attempt }}"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
           git checkout -b "$BRANCH"
 
